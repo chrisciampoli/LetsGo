@@ -1,0 +1,19 @@
+{
+  "public": {
+    "recordsPerPage" : "5"
+  },
+  "private": {
+    "google": {
+      "clientId": "690237881115-3ddcas3ph4rprfrph43f1efjdhhephgd.apps.googleusercontent.com",
+      "secret": "cnWwq0PPtNfZ5BGHq-RzJyo4"
+    },
+    "stripe": "sk_test_JfEndsCLyIOnk6Y9D1B4UWhD"
+  },
+  "galaxy.meteor.com": {
+    "env": {
+      "ROOT_URL": "https://beta.foodsupapp.com/",
+      "DEPLOY_HOSTNAME":"us-east-1.galaxy-deploy.meteor.com",
+      "MONGO_URL": "mongodb+srv://meteor:321321!!@foodsup-prod.zhtt8.mongodb.net/foodsup-beta?retryWrites=true&w=majority"
+    }
+  }
+}
