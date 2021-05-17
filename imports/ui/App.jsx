@@ -9,15 +9,19 @@ import { Tasks } from '/imports/api/tasks';
 import { TaskForm } from './TaskForm';
 import Nav from './components/Navigation/Nav'
 import { LoginForm } from './LoginForm';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Typography from '@material-ui/core/Typography';
+import Container from '@material-ui/core/Container';
+import AppHeader from "./components/AppHeader/AppHeader";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         display: 'flex',
         flexWrap: 'wrap',
         '& > *': {
-            margin: theme.spacing(1),
+            margin: theme.spacing(5),
             width: theme.spacing(16),
-            height: theme.spacing(650),
+            height: theme.spacing(16),
         },
     },
 }));
@@ -61,12 +65,22 @@ export const App = () => {
   // }
 
   return (
-      <Nav>
-          <div className={classes.root}>
-              <Paper elevation={0} />
-              <Paper />
-              <Paper elevation={3} />
-          </div>
-      </Nav>
+      <Container maxWidth="sm">
+          <AppHeader/>
+          <React.Fragment>
+              <CssBaseline />
+
+                  <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }}>
+                      <Nav>
+                          <div className={classes.root}>
+                              <Paper elevation={0} />
+                              <Paper />
+                              <Paper elevation={3} />
+                          </div>
+                      </Nav>
+                  </Typography>
+          </React.Fragment>
+      </Container>
+
   );
 };
