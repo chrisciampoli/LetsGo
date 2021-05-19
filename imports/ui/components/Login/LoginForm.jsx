@@ -14,13 +14,14 @@ import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+//import Logo from 'logo_red.png';
 
 function Copyright() {
     return (
         <Typography variant="body2" color="textSecondary" align="center">
             {'Copyright © '}
             <Link color="inherit" href="https://material-ui.com/">
-                Your Website
+                FoodsUp!
             </Link>{' '}
             {new Date().getFullYear()}
             {'.'}
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
         height: '100vh',
     },
     image: {
-        backgroundImage: 'url(https://source.unsplash.com/random)',
+        backgroundImage: 'url(https://drive.google.com/file/d/0BzWSDOkVH5WfcWk2QkdvUGdGUTQ/view)',
         backgroundRepeat: 'no-repeat',
         backgroundColor:
             theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
@@ -117,7 +118,7 @@ export const LoginForm = () => {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
-                            onClick={() => submit.bind(this)}
+                            onClick={(e) => submit(e) }
                         >
                             Sign In
                         </Button>

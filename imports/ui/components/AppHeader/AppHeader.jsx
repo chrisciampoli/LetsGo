@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meteor } from 'meteor/meteor';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -29,7 +30,7 @@ export default function AppHeader() {
                     <Typography variant="h6" className={classes.title}>
                         FoodsUp!
                     </Typography>
-                    <Button color="inherit">Login</Button>
+                    <Button color="inherit" onClick={() => Meteor.logout()}>Logout</Button>
                 </Toolbar>
             </AppBar>
         </div>
