@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function AppHeader() {
+export default function() {
     const classes = useStyles();
 
     return (
@@ -28,7 +28,7 @@ export default function AppHeader() {
             <AppBar position="static">
                 <Toolbar>
                     <Typography variant="h6" className={classes.title}>
-                        FoodsUp!
+                        <img src="./logo_red.png" />
                     </Typography>
                     <Button color="inherit" onClick={() => Meteor.logout()}>Logout</Button>
                 </Toolbar>

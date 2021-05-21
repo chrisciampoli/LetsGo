@@ -36,13 +36,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function StickyFooter() {
+export default () => {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
+        <div className={this.classes.root}>
             <CssBaseline />
-            <Container component="main" className={classes.main} maxWidth="sm">
+            <Container component="main" className={this.classes.main} maxWidth="sm">
                 <Typography variant="h2" component="h1" gutterBottom>
                     Sticky footer
                 </Typography>
@@ -52,7 +52,7 @@ export default function StickyFooter() {
                 </Typography>
                 <Typography variant="body1">Sticky footer placeholder.</Typography>
             </Container>
-            <footer className={classes.footer}>
+            <footer className={this.classes.footer}>
                 <Container maxWidth="sm">
                     <Typography variant="body1">My sticky footer can be found here.</Typography>
                     <Copyright />

@@ -1,7 +1,75 @@
 
+import React, { useState } from 'react';
+import { Meteor } from 'meteor/meteor';
+import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
+import {makeStyles} from "@material-ui/core/styles";
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import TextField from '@material-ui/core/TextField';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
+import Grid from '@material-ui/core/Grid';
+import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+//import Logo from 'logo_red.png';
 
-export default function SignInSide() {
-    const classes = useStyles();
+function Copyright() {
+    return (
+        <Typography variant="body2" color="textSecondary" align="center">
+            {'Copyright © '}
+            <Link color="inherit" href="https://material-ui.com/">
+                FoodsUp!
+            </Link>{' '}
+            {new Date().getFullYear()}
+            {'.'}
+        </Typography>
+    );
+}
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        height: '100vh',
+    },
+    image: {
+        backgroundImage: 'url(https://drive.google.com/file/d/0BzWSDOkVH5WfcWk2QkdvUGdGUTQ/view)',
+        backgroundRepeat: 'no-repeat',
+        backgroundColor:
+            theme.palette.type === 'light' ? theme.palette.grey[50] : theme.palette.grey[900],
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+    },
+    paper: {
+        margin: theme.spacing(8, 4),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+    },
+    avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+    },
+    form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
+    },
+    submit: {
+        margin: theme.spacing(3, 0, 2),
+    },
+}));
+
+export const Login = () => {
+  const classes = useStyles();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const submit = (e) => {
+    e.preventDefault();
+
+    Meteor.loginWithPassword(username, password);
+  };
 
     return (
         <Grid container component="main" className={classes.root}>
@@ -26,6 +94,7 @@ export default function SignInSide() {
                             name="email"
                             autoComplete="email"
                             autoFocus
+                            onChange={(e) => setUsername(e.currentTarget.value)}
                         />
                         <TextField
                             variant="outlined"
@@ -37,6 +106,7 @@ export default function SignInSide() {
                             type="password"
                             id="password"
                             autoComplete="current-password"
+                            onChange={(e) => setPassword(e.currentTarget.value)}
                         />
                         <FormControlLabel
                             control={<Checkbox value="remember" color="primary" />}
@@ -48,6 +118,7 @@ export default function SignInSide() {
                             variant="contained"
                             color="primary"
                             className={classes.submit}
+                            onClick={(e) => submit(e) }
                         >
                             Sign In
                         </Button>
@@ -71,4 +142,4 @@ export default function SignInSide() {
             </Grid>
         </Grid>
     );
-}
+};
