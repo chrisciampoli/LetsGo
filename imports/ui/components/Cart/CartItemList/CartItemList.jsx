@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+    import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
-import Item from '../CartItem';
+import ListItem from "@material-ui/core/ListItem";
 import Divider from '@material-ui/core/Divider';
 
 const useStyles = makeStyles((theme) => ({
@@ -15,13 +15,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function CartItemList({items}) {
+export default function CartItemList() {
     const classes           = useStyles();
     const [items, setItems] = useState([]);
 
     return (
         <List className={classes.root}>
-            {this.items.map(item => <Item />)}
+            {this.items = [{name: 'test'}, {name: 'test2'}, {name: 'test3'}].map(item => <ListItem />)}
             <Divider variant="inset" component="li" />
         </List>
     );

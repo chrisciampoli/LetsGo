@@ -10,7 +10,7 @@ import PersonPinIcon from '@material-ui/icons/PersonPin';
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
-        maxWidth: 500,
+        maxWidth: "100%",
     },
 });
 

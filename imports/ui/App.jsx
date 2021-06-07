@@ -10,7 +10,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import AppHeader from "./components/AppHeader/AppHeader";
-import Results from "./Results";
+import Feed from "./components/Feed/Feed";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
         flexWrap: 'wrap',
         '& > *': {
             margin: theme.spacing(5),
-            width: theme.spacing(16),
+            width: 1,
             height: theme.spacing(16),
         },
     },
@@ -63,21 +63,23 @@ export const App = () => {
   }
 
   return (
-      <Container maxWidth="lg">
+      <Container name="AppContainer" maxWidth="xl">
           <AppHeader/>
           <React.Fragment>
               <CssBaseline />
-                  <Typography component="div" style={{ backgroundColor: '#cfe8fc', height: '100vh' }}>
+                  <Typography width={1} component="div" style={{ backgroundColor: '#cfe8fc'}}>
                       <Nav>
-                          <div className={classes.root}>
+                          <div id="navnav" className={classes.root}>
                               <Paper elevation={0} />
-                              <Paper />
+                              <Paper>
+                                  <Feed />
+                              </Paper>
                               <Paper elevation={3} />
                           </div>
                       </Nav>
                   </Typography>
           </React.Fragment>
-          <Results />
+          <Feed />
       </Container>
 
   );
