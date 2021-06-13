@@ -2,10 +2,10 @@ import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
 import { assert } from 'chai';
 
-import { Meals } from './meals.js';
+import { Comments } from '../Model/comments.js';
 
 if (Meteor.isServer) {
-  describe('Meals', () => {
+  describe('Comments', () => {
     describe('methods', () => {
       const userId = Random.id();
       let mealId;
@@ -18,10 +18,18 @@ if (Meteor.isServer) {
           createdAt: new Date(),
           owner: userId,
           username: 'meteorite',
+          comments: [
+              new Comments({
+                userId,
+                comment: 'This place sucked!',
+                thread: [],
+                likes: 0
+              })
+          ]
         });
       });
 
-      it('can delete owned meal', () => {
+      it('can delete owned meal - will also delete comments thread', () => {
         // Isolate internal method implementation.
         const deleteMeal = Meteor.server.method_handlers['meals.remove'];
 

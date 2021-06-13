@@ -33,9 +33,9 @@ export default function Nav() {
                 textColor="secondary"
                 aria-label="icon label tabs example"
             >
-                <Tab icon={<PhoneIcon />} label="RECENTS" />
-                <Tab icon={<FavoriteIcon />} label="FAVORITES" />
-                <Tab icon={<PersonPinIcon />} label="NEARBY" />
+                <Tab icon={<PhoneIcon />} label="FEED" />
+                <Tab icon={<FavoriteIcon />} label="MY MEALS" />
+                <Tab icon={<PersonPinIcon />} label="SETTINGS" />
             </Tabs>
         </Paper>
     );

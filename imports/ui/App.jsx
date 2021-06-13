@@ -10,7 +10,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import AppHeader from "./components/AppHeader/AppHeader";
-import Feed from "./components/Feed/Feed";
+import Feed from "./pages/Feed";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -44,15 +44,18 @@ export const App = () => {
   //   _.set(filter, 'checked', false);
   // }
 
-  const {  user } = useTracker(() => {
+  const { user } = useTracker(() => {
     // Meteor.subscribe('tasks');
+
     // tasks, incompleteTasksCount,
     return ({
       // tasks: Tasks.find(filter, {sort: {createdAt: -1}}).fetch(),
       // incompleteTasksCount: Tasks.find({checked: {$ne: true}}).count(),
-      user: Meteor.user()
+        user: Meteor.user()
     });
   });
+
+
 
   if (!user) {
     return (
@@ -81,6 +84,5 @@ export const App = () => {
           </React.Fragment>
           <Feed />
       </Container>
-
   );
 };

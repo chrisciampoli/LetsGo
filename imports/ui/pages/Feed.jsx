@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTracker } from 'meteor/react-meteor-data';
 import AppBar from '@material-ui/core/AppBar';
 import Button from '@material-ui/core/Button';
 import CameraIcon from '@material-ui/icons/PhotoCamera';
@@ -13,6 +14,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
+import Skeleton from '@material-ui/lab/skeleton';
+import {MealsCollection} from "../../api/Model/MealsCollection";
 
 function Copyright() {
     return (
@@ -59,10 +62,23 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-
 export default function Feed() {
     const classes = useStyles();
+    const { meals, isLoading } = useTracker(() => {
+        const noDataAvailable = { meals: [], pendingTasksCount: 0 };
+        if (!Meteor.user()) {
+            return noDataAvailable;
+        }
+        const handler = Meteor.subscribe('meals');
+
+        if (!handler.ready()) {
+            return { ...noDataAvailable, isLoading: true };
+        }
+
+        const meals = MealsCollection.find({}, {limit: 10});
+
+        return { meals };
+    });
 
     return (
         <React.Fragment>
@@ -71,55 +87,29 @@ export default function Feed() {
                 <Toolbar>
                     <CameraIcon className={classes.icon} />
                     <Typography variant="h6" color="inherit" noWrap>
-                        Album layout
+                        Food Feed
                     </Typography>
                 </Toolbar>
             </AppBar>
             <main>
-                {/* Hero unit */}
-                <div className={classes.heroContent}>
-                    <Container maxWidth="sm">
-                        <Typography component="h1" variant="h2" align="center" color="textPrimary" gutterBottom>
-                            Album layout
-                        </Typography>
-                        <Typography variant="h5" align="center" color="textSecondary" paragraph>
-                            Something short and leading about the collection below—its contents, the creator, etc.
-                            Make it short and sweet, but not too short so folks don&apos;t simply skip over it
-                            entirely.
-                        </Typography>
-                        <div className={classes.heroButtons}>
-                            <Grid container spacing={2} justify="center">
-                                <Grid item>
-                                    <Button variant="contained" color="primary">
-                                        Main call to action
-                                    </Button>
-                                </Grid>
-                                <Grid item>
-                                    <Button variant="outlined" color="primary">
-                                        Secondary action
-                                    </Button>
-                                </Grid>
-                            </Grid>
-                        </div>
-                    </Container>
-                </div>
                 <Container className={classes.cardGrid} maxWidth="md">
                     {/* End hero unit */}
                     <Grid container spacing={4}>
-                        {cards.map((card) => (
-                            <Grid item key={card} xs={12} sm={6} md={4}>
+                        {(isLoading ? Array.from(new Array(3)) : meals).map((meal, index) => (
+                            <Grid item key={meal ? meal._id : index} xs={12} sm={6} md={4}>
+                                {meal ? (
                                 <Card className={classes.card}>
                                     <CardMedia
                                         className={classes.cardMedia}
-                                        image="https://source.unsplash.com/random"
+                                        image={meal.image}
                                         title="Image title"
                                     />
                                     <CardContent className={classes.cardContent}>
                                         <Typography gutterBottom variant="h5" component="h2">
-                                            Heading
+                                            {meal.companyName} - {meal.name}
                                         </Typography>
                                         <Typography>
-                                            This is a media card. You can use this section to describe the content.
+                                            {meal.ingredients}
                                         </Typography>
                                     </CardContent>
                                     <CardActions>
@@ -131,6 +121,9 @@ export default function Feed() {
                                         </Button>
                                     </CardActions>
                                 </Card>
+                                    ) : (
+                                   <Skeleton variant="reat" width={210} height={118} />
+                                )}
                             </Grid>
                         ))}
                     </Grid>

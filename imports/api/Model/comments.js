@@ -1,25 +1,20 @@
 import { Mongo } from 'meteor/mongo';
 import { check } from 'meteor/check';
 
-export const Meals = new Mongo.Collection('meals');
+export const Comments = new Mongo.Collection('comments');
 
 Meteor.methods({
-  'meals.insert'(text) {
-    check(text, String);
+  'comments.insert'(obj) {
+    check(obj, Object);
 
     if (!this.userId) {
       throw new Meteor.Error('Not authorized.');
     }
 
-    Meals.insert({
-      text,
-      createdAt: new Date,
-      owner: this.userId,
-      username: Meteor.users.findOne(this.userId).username
-    })
+    Comments.insert(obj);
   },
 
-  'meals.remove'(mealId) {
+  'comments.remove'(mealId) {
     check(mealId, String);
 
     const meal = Meals.findOne(mealId);

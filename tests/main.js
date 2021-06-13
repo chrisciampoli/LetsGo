@@ -1,9 +1,6 @@
 import assert from "assert";
 
-import "../imports/api/tasks.tests.js";
-import "../imports/api/meals.tests.js";
-
-describe("simple-todos-react", function () {
+describe("FoodsUp!", function () {
   it("package.json has correct name", async function () {
     const { name } = await import("../package.json");
     assert.strictEqual(name, "simple-todos-react");
