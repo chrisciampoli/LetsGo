@@ -6,11 +6,15 @@ import Tab from '@material-ui/core/Tab';
 import PhoneIcon from '@material-ui/icons/Phone';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PersonPinIcon from '@material-ui/icons/PersonPin';
+import {NavLink} from "react-router-dom";
 
 const useStyles = makeStyles({
     root: {
         flexGrow: 1,
         maxWidth: "100%",
+        position: "fixed",
+        bottom: 0,
+        width: "100%"
     },
 });
 
@@ -28,14 +32,10 @@ export default function Nav() {
                 value={value}
                 onChange={handleChange}
                 centered
-                variant="fullWidth"
-                indicatorColor="secondary"
-                textColor="secondary"
-                aria-label="icon label tabs example"
             >
-                <Tab icon={<PhoneIcon />} label="FEED" />
-                <Tab icon={<FavoriteIcon />} label="MY MEALS" />
-                <Tab icon={<PersonPinIcon />} label="SETTINGS" />
+                <a><NavLink to="/"><Tab icon={<PhoneIcon />} label="FEED"/></NavLink></a>
+                <a><NavLink to="/myMeals"><Tab icon={<FavoriteIcon />} label="MY MEALS" /></NavLink></a>
+                <a><NavLink to="/account"><Tab icon={<PersonPinIcon />} label="SETTINGS" /></NavLink></a>
             </Tabs>
         </Paper>
     );

@@ -1,5 +1,5 @@
 {
-  "name": "simple-todos-react",
+  "name": "foodsup-material",
   "private": true,
   "scripts": {
     "deploy": "DEPLOY_HOSTNAME=us-east-1.galaxy-deploy.meteor.com meteor deploy --settings settings.json beta.foodsupapp.com",
@@ -16,10 +16,12 @@
     "bcrypt": "^3.0.8",
     "classnames": "^2.2.6",
     "lodash": "^4.17.15",
+    "meteor": "^2.2.1",
     "meteor-node-stubs": "^1.0.0",
     "react": "^16.13.0",
     "react-dom": "^16.13.0",
-    "react-router": "^5.2.0"
+    "react-meteor-data": "^0.2.11",
+    "react-router-dom": "^5.2.0"
   },
   "meteor": {
     "mainModule": {
