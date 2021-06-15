@@ -82,64 +82,39 @@ export default function Feed() {
 
     return (
         <React.Fragment>
-            <CssBaseline />
-            <AppBar position="relative">
-                <Toolbar>
-                    <CameraIcon className={classes.icon} />
-                    <Typography variant="h6" color="inherit" noWrap>
-                        Food Feed
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <main>
-                <Container className={classes.cardGrid} maxWidth="md">
-                    {/* End hero unit */}
-                    <Grid container spacing={4}>
-                        {(isLoading ? Array.from(new Array(3)) : meals).map((meal, index) => (
-                            <Grid item key={meal ? meal._id : index} xs={12} sm={6} md={4}>
-                                {meal ? (
-                                <Card className={classes.card}>
-                                    <CardMedia
-                                        className={classes.cardMedia}
-                                        image={meal.image}
-                                        title="Image title"
-                                    />
-                                    <CardContent className={classes.cardContent}>
-                                        <Typography gutterBottom variant="h5" component="h2">
-                                            {meal.companyName} - {meal.name}
-                                        </Typography>
-                                        <Typography>
-                                            {meal.ingredients}
-                                        </Typography>
-                                    </CardContent>
-                                    <CardActions>
-                                        <Button size="small" color="primary">
-                                            View
-                                        </Button>
-                                        <Button size="small" color="primary">
-                                            Edit
-                                        </Button>
-                                    </CardActions>
-                                </Card>
-                                    ) : (
-                                   <Skeleton variant="reat" width={210} height={118} />
-                                )}
-                            </Grid>
-                        ))}
+            <Grid container spacing={4}>
+                {(isLoading ? Array.from(new Array(3)) : meals).map((meal, index) => (
+                    <Grid item key={meal ? meal._id : index} xs={12} sm={6} md={4}>
+                        {meal ? (
+                            <Card className={classes.card}>
+                                <CardMedia
+                                    className={classes.cardMedia}
+                                    image={meal.image}
+                                    title="Image title"
+                                />
+                                <CardContent className={classes.cardContent}>
+                                    <Typography gutterBottom variant="h5" component="h2">
+                                        {meal.companyName} - {meal.name}
+                                    </Typography>
+                                    <Typography>
+                                        {meal.ingredients}
+                                    </Typography>
+                                </CardContent>
+                                <CardActions>
+                                    <Button size="small" color="primary">
+                                        View
+                                    </Button>
+                                    <Button size="small" color="primary">
+                                        Edit
+                                    </Button>
+                                </CardActions>
+                            </Card>
+                        ) : (
+                            <Skeleton variant="rect" width={210} height={118} />
+                        )}
                     </Grid>
-                </Container>
-            </main>
-            {/* Footer */}
-            <footer className={classes.footer}>
-                <Typography variant="h6" align="center" gutterBottom>
-                    Footer
-                </Typography>
-                <Typography variant="subtitle1" align="center" color="textSecondary" component="p">
-                    Something here to give the footer a purpose!
-                </Typography>
-                <Copyright />
-            </footer>
-            {/* End footer */}
+                ))}
+            </Grid>
         </React.Fragment>
     );
 }
