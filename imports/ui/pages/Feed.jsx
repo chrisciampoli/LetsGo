@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import Link from '@material-ui/core/Link';
-import Skeleton from '@material-ui/lab/skeleton';
+import Skeleton from '@material-ui/lab/Skeleton';
 import {MealsCollection} from "../../api/Model/MealsCollection";
 
 function Copyright() {
@@ -122,7 +122,7 @@ export default function Feed() {
                                     </CardActions>
                                 </Card>
                                     ) : (
-                                   <Skeleton variant="reat" width={210} height={118} />
+                                   <Skeleton variant="rect" width={210} height={118} />
                                 )}
                             </Grid>
                         ))}
